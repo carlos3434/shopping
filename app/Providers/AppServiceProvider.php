@@ -25,8 +25,12 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
+    public function boot( )
     {
+        if(env('REDIRECT_HTTPS'))
+        {
+            \URL::forceScheme('https');
+        }
         Paginator::useBootstrap();
         Sanctum::usePersonalAccessTokenModel(PersonalAccessToken::class);
     }
